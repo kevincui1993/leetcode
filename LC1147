@@ -1,0 +1,20 @@
+
+class Solution(object):
+    def longestDecomposition(self, text):
+        """
+        :type text: str
+        :rtype: int
+        """
+        front,back = "", ""
+        i = 0
+        if not text:
+            return 0
+        if len(text) == 1:
+            return 1
+        while i < len(text) // 2:
+            front += text[i]
+            back = text[len(text)-1-i] + back
+            if (back == front):
+                return 2 + self.longestDecomposition(text[i+1: len(text)-i-1])
+            i+=1
+        return 1;
